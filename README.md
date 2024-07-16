@@ -24,15 +24,17 @@ const sticky = new StickyToParent({
   element: ".sticky", /* Use element class, id or tag (if it unic) */
   offset:0 /* Optional. Default is Zero. Adds offset to top and bottom while block not reachs top or bottom */
 });
-sticky.stickTheBlock(); /* first init check positioning and move block if needed */
+
+sticky.stickTheBlock(); /* Optional. First init - check positioning and move block if needed */
+
 document.addEventListener("scroll", () => {
-  sticky.stickTheBlock(); /* add listener to document scroll */
+  sticky.stickTheBlock();
 });
 ```
 
 ### Note
 
-Make sure the parent has position: relative attribute
+Make sure the parent has position: relative style
 
 Script using current height of the parent and the sticky block, so if some enother script will changes the height - it's ok, script will handle it (this is the main reason why i made it, other scripts what i found can't do that)
 
