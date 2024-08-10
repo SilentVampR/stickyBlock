@@ -47,7 +47,6 @@ class StickyToParent {
 
   stickTheBlock() {
     if (this.element) {
-      console.log(this.element);
       this.stickyHeight = this.element.offsetHeight;
       var topPosition = 0,
         parentTop = this.parent?.getBoundingClientRect().top,
