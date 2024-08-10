@@ -11,13 +11,16 @@ class StickyToParent {
     this.stickyWidth = this.element?.offsetWidth;
     this.parent = this.element?.parentNode;
     this.elementClass = params.classSelector.replace(/^\./, "");
+    this.additionalClass = params.additionalClass;
   }
 
   #toggleActive(status) {
-    if (status) {
-      this.element.classList.add(`${this.elementClass}_active`);
-    } else {
-      this.element.classList.remove(`${this.elementClass}_active`);
+    if (this.additionalClass) {
+      if (status) {
+        this.element.classList.add(`${this.elementClass}_active`);
+      } else {
+        this.element.classList.remove(`${this.elementClass}_active`);
+      }
     }
   }
 
