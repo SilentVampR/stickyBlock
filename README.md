@@ -6,7 +6,7 @@ Sticks any block in parent node (menu, filter, etc)
 
 ### How to
 
-Simple HTML structure (You can use any class or ID)
+Simple HTML structure
 
 ```
 <div class="some-block-with-grid-flex-layout">
@@ -21,11 +21,12 @@ Use script to init stickyBlock
 
 ```
 const sticky = new StickyToParent({
-  element: ".sticky", /* Use element class, id or tag (if it unic) */
+  classSelector: ".sticky", /* Use unic element class */
   offset:0 /* Optional. Default is Zero. Adds offset to top and bottom while block not reachs top or bottom */
+  additionalClass: true /* Optional. If you want to add some class when block is sticky to make some changes etc. Additional class looks like classSelector_active */
 });
 
-sticky.stickTheBlock(); /* Optional. First init - check positioning and move block if needed */
+sticky.stickTheBlock(); /* Optional. First init - check positioning and move block if page scrolled already */
 
 document.addEventListener("scroll", () => {
   sticky.stickTheBlock();
@@ -34,9 +35,9 @@ document.addEventListener("scroll", () => {
 
 ### Note
 
-Make sure the parent has position: relative style
+Make sure the parent has *position: relative* style
 
-Script using current height of the parent and the sticky block, so if some enother script will changes the height - it's ok, script will handle it (this is the main reason why i made it, other scripts what i found can't do that)
+Script using current height of the parent and the sticky block, so if some enother script or action will change parent's height - it's ok, script will handle it (this is the main reason why i made it, other scripts what i found can't do that)
 
 ### Demo
 

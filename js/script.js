@@ -6,10 +6,19 @@ class StickyToParent {
   scrollPosition = window.scrollY;
 
   constructor(params) {
-    this.element = document.querySelector(`${params.element}`);
+    this.element = document.querySelector(`${params.classSelector}`);
     this.offset = Number.isInteger(params.offset) ? params.offset : 0;
     this.stickyWidth = this.element?.offsetWidth;
     this.parent = this.element?.parentNode;
+    this.elementClass = params.classSelector.replace(/^\./, "");
+  }
+
+  #toggleActive(status) {
+    if (status) {
+      this.element.classList.add(`${this.elementClass}_active`);
+    } else {
+      this.element.classList.remove(`${this.elementClass}_active`);
+    }
   }
 
   #setStyle(value) {
@@ -30,20 +39,31 @@ class StickyToParent {
           "px"
       );
     }
+    this.#toggleActive(true);
   }
 
   stickTheBlock() {
     if (this.element) {
+      console.log(this.element);
       this.stickyHeight = this.element.offsetHeight;
       var topPosition = 0,
         parentTop = this.parent?.getBoundingClientRect().top,
         parentHeight = Math.round(this.parent?.getBoundingClientRect().height);
       if (parentTop < 0 && this.stickyHeight < parentHeight) {
-        var blockOffset = this.stickyHeight > window.innerHeight ? window.innerHeight - this.stickyHeight : 0;
-        if (window.innerHeight - parentTop >= parentHeight && this.stickyHeight >= window.innerHeight) {
+        var blockOffset =
+          this.stickyHeight > window.innerHeight
+            ? window.innerHeight - this.stickyHeight
+            : 0;
+        if (
+          window.innerHeight - parentTop >= parentHeight &&
+          this.stickyHeight >= window.innerHeight
+        ) {
           this.#setStyle(false);
-        } else if (window.innerHeight - parentTop >= parentHeight && this.stickyHeight < window.innerHeight &&
-          parentHeight + parentTop + this.offset <= this.stickyHeight) {
+        } else if (
+          window.innerHeight - parentTop >= parentHeight &&
+          this.stickyHeight < window.innerHeight &&
+          parentHeight + parentTop + this.offset <= this.stickyHeight
+        ) {
           this.#setStyle(false);
         } else {
           topPosition =
@@ -75,6 +95,7 @@ class StickyToParent {
           this.#setStyle(topPosition);
         }
       } else {
+        this.#toggleActive(false);
         this.element.style = "";
       }
       this.scrollPosition = window.scrollY;

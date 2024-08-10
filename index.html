@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,41 +11,46 @@
 </head>
 
 <body>
-<div class="some-block">
-  <div class="header"></div>
-  <div class="parent">
-    <div class="sticky">
-      <p>Sticky block top</p>
-      <ul>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-        <li>List-item</li>
-      </ul>
-      <p>Sticky block bottom</p>
+  <div class="some-block">
+    <div class="header"></div>
+    <div class="parent">
+      <div class="sticky">
+        <p>Sticky block top</p>
+        <ul>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+          <li>List-item</li>
+        </ul>
+        <p>Sticky block bottom</p>
+      </div>
     </div>
+    <div class="right-block">
+      <p>Right block top</p>
+      <p>Ut enim ad minima veniam, nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo
+        minus id, quod maxime placeat, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt
+        mollitia animi, id est laborum et dolorum fuga! Lorem ipsum dolor sit amet, nam libero tempore, cum soluta nobis
+        est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.</p>
+      <p>Right block bottom</p>
+    </div>
+    <div class="footer"></div>
   </div>
-  <div class="right-block">
-    <p>Right block top</p>
-    <p>Ut enim ad minima veniam, nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga! Lorem ipsum dolor sit amet, nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p>Right block bottom</p>
-  </div>
-  <div class="footer"></div>
-</div>
-<script>
-const sticky = new StickyToParent({
-  element: ".sticky",
-  offset:0
-});
-sticky.stickTheBlock();
-document.addEventListener("scroll", () => {
-  sticky.stickTheBlock();
-});
-</script>
+  <script>
+    const sticky = new StickyToParent({
+      classSelector: ".sticky",
+      offset: 0,
+      additionalClass: true
+    });
+    sticky.stickTheBlock();
+    document.addEventListener("scroll", () => {
+      sticky.stickTheBlock();
+    });
+  </script>
 </body>
 
 </html>
