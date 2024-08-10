@@ -37,7 +37,7 @@ class StickyToParent {
       this.stickyHeight = this.element.offsetHeight;
       var topPosition = 0,
         parentTop = this.parent?.getBoundingClientRect().top,
-        parentHeight = this.parent?.getBoundingClientRect().height;
+        parentHeight = Math.round(this.parent?.getBoundingClientRect().height);
       if (parentTop < 0 && this.stickyHeight < parentHeight) {
         var blockOffset = this.stickyHeight > window.innerHeight ? window.innerHeight - this.stickyHeight : 0;
         if (window.innerHeight - parentTop >= parentHeight && this.stickyHeight >= window.innerHeight) {
